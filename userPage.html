@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script defer src="./js/logout.js"></script>
+    <script defer src="./js/index.js"></script>
+    <script defer src="./js/userPage.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="content-div">
+        <a href="index.html">
+          <img src="bakary.png" alt="Logo" class="logo" />
+        </a>
+        <div id="auth-links">
+          <a href="login.html" class="h-links">Login</a>
+          <a href="registration.html" class="h-links">Registration</a>
+        </div>
+        <div id="user-profile-container">
+          <a href="userPage.html" id="h-userName">Name</a>
+          <button type="button" id="logout-btn" class="">Log Out</button>
+        </div>
+      </div>
+    </header>
+    <div class="meals-container">
+      <div id="userProfile" class="content-div">
+        <h1>Products</h1>
+        <button type="button" id="addProduct">Add Product</button>
+        <div id="product-blocks"></div>
+      </div>
+    </div>
+  </body>
+</html>
