@@ -32,7 +32,7 @@ function addProduct() {
         productName +
         "</h1> <div><label>Product Calories: </label>" +
         productCalorie +
-        "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='/images/close.png'></button>";
+        "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='images/close.png'></button>";
       container.appendChild(div);
       let obj = {
         name: productName,
@@ -60,7 +60,7 @@ for (var key in localStorage) {
       JSON.parse(localStorage.getItem(key)).name +
       "</h1> <div><label>Product Calories: </label>" +
       JSON.parse(localStorage.getItem(key)).calorie +
-      "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='/images/close.png'></button>";
+      "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='images/close.png'></button>";
     container.appendChild(div);
     count++;
   }
