@@ -7,7 +7,7 @@ if (localStorage.getItem("_Auth")) {
 
 function removeProduct(a) {
   a.parentNode.remove();
-  let getKey = "_" + userName + " " + a.parentNode.children[0].textContent;
+  let getKey = "_" + userName + " " + a.parentNode.children[1].textContent;
   localStorage.removeItem(getKey);
 }
 
