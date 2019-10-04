@@ -64,10 +64,10 @@ for (var key in localStorage) {
       "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='images/close.png'></button>";
     container.appendChild(div);
   }
-  // if (a === "_url" + userName) {
-  //   let sk = localStorage.getItem("_url" + userName);
-  //   document.getElementById("profile-image").src = sk;
-  // }
+  if (a === "_url" + userName) {
+    let sk = localStorage.getItem("_url" + userName);
+    document.getElementById("profile-image").src = sk;
+  }
 }
 
 function changePassword() {
@@ -131,10 +131,17 @@ function changePassword() {
 }
 document
   .getElementById("image-upload-btn")
-  .addEventListener("change", changeProfilePicture);
+  .addEventListener("change", openFile);
 
-function changeProfilePicture(event) {
-  var output = document.getElementById("profile-image");
-  output.src = URL.createObjectURL(event.target.files[0]);
-  localStorage.setItem("_url" + userName, output.src);
+function openFile(event) {
+  var input = event.target;
+
+  var reader = new FileReader();
+  reader.onload = function() {
+    var dataURL = reader.result;
+    var output = document.getElementById("profile-image");
+    output.src = dataURL;
+    localStorage.setItem("_url" + userName, output.src);
+  };
+  reader.readAsDataURL(input.files[0]);
 }
