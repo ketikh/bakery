@@ -172,3 +172,36 @@ a.h-links {
 #reset-btn {
   width: 100%;
 }
+
+.password-change-container .fields {
+  width: 250px;
+}
+
+.password-change-container .fields input {
+  border: 1px solid #caaeae;
+  border-radius: 4px;
+}
+
+#change-password {
+  width: 250px;
+}
+
+.error-field {
+  border: 1px solid red !important;
+}
+
+#profile-image {
+  width: 100px;
+}
+
+#image-upload-btn {
+  opacity: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+#upload-image-container {
+  position: relative;
+}

@@ -28,7 +28,48 @@
         </div>
       </div>
     </header>
-    <div class="meals-container">
+    <div class="cabinet-container">
+      <div class="content-div">
+        <h1>Profile Picture</h1>
+        <div id="upload-image-container">
+          <input type="file" accept="image/*" id="image-upload-btn" />
+          <img id="profile-image" src="images/profile.jpeg" />
+        </div>
+        <button type="button" id="change-picture">
+          Save image
+        </button>
+      </div>
+      <div class="password-change-container content-div">
+        <h1>Change Password</h1>
+        <form id="change-password-form">
+          <div class="fields">
+            <label>Old Password</label>
+            <input
+              type="password"
+              placeholder="Enter old password"
+              id="old-password"
+              class=""
+            />
+          </div>
+          <div class="fields">
+            <label>New Passowrd</label>
+            <input
+              type="password"
+              placeholder="Enter new password"
+              id="new-password"
+            />
+          </div>
+          <div class="fields">
+            <label>Repeat New Password</label>
+            <input
+              type="password"
+              placeholder="Repeat new password"
+              id="repeat-new-password"
+            />
+          </div>
+          <button type="button" class="btn" id="change-password">Save</button>
+        </form>
+      </div>
       <div id="userProfile" class="content-div">
         <h1>Products</h1>
         <button type="button" id="addproduct">Add Product</button>

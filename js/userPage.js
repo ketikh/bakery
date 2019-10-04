@@ -1,5 +1,7 @@
 document.getElementById("addproduct").addEventListener("click", addProduct);
-
+document
+  .getElementById("change-password")
+  .addEventListener("click", changePassword);
 let userName;
 if (localStorage.getItem("_Auth")) {
   userName = JSON.parse(localStorage.getItem("_Auth")).name;
@@ -47,7 +49,6 @@ function addProduct() {
   }
 }
 
-let count = 0;
 for (var key in localStorage) {
   let a = key.split(" ")[0];
   if (a === "_" + userName) {
@@ -62,11 +63,78 @@ for (var key in localStorage) {
       JSON.parse(localStorage.getItem(key)).calorie +
       "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='images/close.png'></button>";
     container.appendChild(div);
-    count++;
+  }
+  // if (a === "_url" + userName) {
+  //   let sk = localStorage.getItem("_url" + userName);
+  //   document.getElementById("profile-image").src = sk;
+  // }
+}
+
+function changePassword() {
+  let oldPassword = document.getElementById("old-password").value;
+  let newPassword = document.getElementById("new-password").value;
+  let repeatNewPassword = document.getElementById("repeat-new-password").value;
+  let currentPassword = JSON.parse(localStorage.getItem("_Auth")).password;
+  if (oldPassword && newPassword && repeatNewPassword) {
+    if (oldPassword !== currentPassword) {
+      document.getElementById("old-password").classList.add("error-field");
+      document.getElementById("new-password").classList.remove("error-field");
+      document
+        .getElementById("repeat-new-password")
+        .classList.remove("error-field");
+      alert("Incorrect Current Password");
+    } else {
+      document.getElementById("old-password").classList.remove("error-field");
+      if (newPassword !== repeatNewPassword) {
+        alert("Password does not match");
+        document.getElementById("new-password").classList.add("error-field");
+        document
+          .getElementById("repeat-new-password")
+          .classList.add("error-field");
+      } else {
+        document.getElementById("new-password").classList.remove("error-field");
+        document
+          .getElementById("repeat-new-password")
+          .classList.remove("error-field");
+        let userObj = {
+          name: userName,
+          password: newPassword
+        };
+        localStorage.setItem(userName, JSON.stringify(userObj));
+        localStorage.setItem("_Auth", JSON.stringify(userObj));
+        alert("Password Change");
+        document.getElementById("change-password-form").reset();
+      }
+    }
+  } else {
+    alert("Please fill fields");
+    if (!oldPassword) {
+      document.getElementById("old-password").classList.add("error-field");
+    } else {
+      document.getElementById("old-password").classList.remove("error-field");
+    }
+    if (!newPassword) {
+      document.getElementById("new-password").classList.add("error-field");
+    } else {
+      document.getElementById("new-password").classList.remove("error-field");
+    }
+    if (!repeatNewPassword) {
+      document
+        .getElementById("repeat-new-password")
+        .classList.add("error-field");
+    } else {
+      document
+        .getElementById("repeat-new-password")
+        .classList.remove("error-field");
+    }
   }
 }
-//let cbox = document.querySelectorAll(".remove-product");
+document
+  .getElementById("image-upload-btn")
+  .addEventListener("change", changeProfilePicture);
 
-// for (let i = 0; i < cbox.length; i++) {
-//   cbox[i].addEventListener("click", removeProduct);
-// }
+function changeProfilePicture(event) {
+  var output = document.getElementById("profile-image");
+  output.src = URL.createObjectURL(event.target.files[0]);
+  localStorage.setItem("_url" + userName, output.src);
+}
