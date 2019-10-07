@@ -2,6 +2,10 @@ document.getElementById("addproduct").addEventListener("click", addProduct);
 document
   .getElementById("change-password")
   .addEventListener("click", changePassword);
+document
+  .getElementById("image-upload-btn")
+  .addEventListener("change", openFile);
+
 let userName;
 if (localStorage.getItem("_Auth")) {
   userName = JSON.parse(localStorage.getItem("_Auth")).name;
@@ -46,27 +50,6 @@ function addProduct() {
         JSON.stringify(obj)
       );
     }
-  }
-}
-
-for (var key in localStorage) {
-  let a = key.split(" ")[0];
-  if (a === "_" + userName) {
-    let container = document.getElementById("product-blocks");
-    let div = document.createElement("div");
-    div.classList.add("prod-block");
-    container.appendChild(div);
-    div.innerHTML =
-      "<label>Product Name: </label><h1>" +
-      JSON.parse(localStorage.getItem(key)).name +
-      "</h1> <div><label>Product Calories: </label>" +
-      JSON.parse(localStorage.getItem(key)).calorie +
-      "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='images/close.png'></button>";
-    container.appendChild(div);
-  }
-  if (a === "_url" + userName) {
-    let sk = localStorage.getItem("_url" + userName);
-    document.getElementById("profile-image").src = sk;
   }
 }
 
@@ -129,9 +112,6 @@ function changePassword() {
     }
   }
 }
-document
-  .getElementById("image-upload-btn")
-  .addEventListener("change", openFile);
 
 function openFile(event) {
   var input = event.target;
@@ -144,4 +124,25 @@ function openFile(event) {
     localStorage.setItem("_url" + userName, output.src);
   };
   reader.readAsDataURL(input.files[0]);
+}
+
+for (var key in localStorage) {
+  let a = key.split(" ")[0];
+  if (a === "_" + userName) {
+    let container = document.getElementById("product-blocks");
+    let div = document.createElement("div");
+    div.classList.add("prod-block");
+    container.appendChild(div);
+    div.innerHTML =
+      "<label>Product Name: </label><h1>" +
+      JSON.parse(localStorage.getItem(key)).name +
+      "</h1> <div><label>Product Calories: </label>" +
+      JSON.parse(localStorage.getItem(key)).calorie +
+      "</div> <button type='button' class='remove-product' onclick='removeProduct(this)'><img src='images/close.png'></button>";
+    container.appendChild(div);
+  }
+  if (a === "_url" + userName) {
+    let sk = localStorage.getItem("_url" + userName);
+    document.getElementById("profile-image").src = sk;
+  }
 }
